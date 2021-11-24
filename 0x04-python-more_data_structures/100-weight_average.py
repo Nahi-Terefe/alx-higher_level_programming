@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 def weight_average(my_list=[]):
-
-    if my_list:
-        average = ((1 * 2) + (2 * 1) + (3 * 10) + (4 * 2)) / (2 + 1 + 10 + 2)
-        return average
-    else:
+    if not my_list:
         return 0
+    return sum(i[0] * i[1] for i in my_list) / sum(i[1] for i in my_list)
