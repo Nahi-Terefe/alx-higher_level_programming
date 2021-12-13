@@ -1,62 +1,65 @@
 #!/usr/bin/python3
-"""
-nqueens backtracking program to print the coordinates of n queens
-on an nxn grid such that they are all in non-attacking positions
-"""
+""" module for N queens. """
 
+if __name__ == '__main__':
 
-from sys import argv
+    import sys
 
-if __name__ == "__main__":
-    a = []
-    if len(argv) != 2:
+    if len(sys.argv) != 2:
         print("Usage: nqueens N")
-        exit(1)
-    if argv[1].isdigit() is False:
+        sys.exit(1)
+    try:
+        size = int(sys.argv[1])
+    except BaseException:
         print("N must be a number")
-        exit(1)
-    n = int(argv[1])
-    if n < 4:
+        sys.exit(1)
+    if size < 4:
         print("N must be at least 4")
-        exit(1)
+        sys.exit(1)
 
-    # initialize the answer list
-    for i in range(n):
-        a.append([i, None])
+    def startSolve():
+        b = [[0 for j in range(size)] for i in range(size)]
+        checkRecursive(b, 0)
+        return
 
-    def already_exists(y):
-        """check that a queen does not already exist in that y value"""
-        for x in range(n):
-            if y == a[x][1]:
-                return True
-        return False
+    def checkRecursive(b, c):
+        if (c == size):
+            solution(b)
+            return True
+        ret = False
+        for i in range(size):
+            if (checkPosition(b, i, c)):
+                b[i][c] = 1
+                ret = checkRecursive(b, c + 1) or ret
+                b[i][c] = 0
+        return ret
 
-    def reject(x, y):
-        """determines whether or not to reject the solution"""
-        if (already_exists(y)):
-            return False
-        i = 0
-        while(i < x):
-            if abs(a[i][1] - y) == abs(i - x):
+    def checkPosition(b, r, c):
+        for i in range(c):
+            if (b[r][i]):
                 return False
-            i += 1
+        i = r
+        j = c
+        while i >= 0 and j >= 0:
+            if(b[i][j]):
+                return False
+            i = i - 1
+            j = j - 1
+        i = r
+        j = c
+        while j >= 0 and i < size:
+            if(b[i][j]):
+                return False
+            i = i + 1
+            j = j - 1
         return True
 
-    def clear_a(x):
-        """clears the answers from the point of failure on"""
-        for i in range(x, n):
-            a[i][1] = None
-
-    def nqueens(x):
-        """recursive backtracking function to find the solution"""
-        for y in range(n):
-            clear_a(x)
-            if reject(x, y):
-                a[x][1] = y
-                if (x == n - 1):  # accepts the solution
-                    print(a)
-                else:
-                    nqueens(x + 1)  # moves on to next x value to continue
-
-    # start the recursive process at x = 0
-    nqueens(0)
+    def solution(b):
+        solve = []
+        for i in range(size):
+            for j in range(size):
+                if(b[i][j] is 1):
+                    solve.append([i, j])
+        print(solve)
+        solve.clear()
+    startSolve()
