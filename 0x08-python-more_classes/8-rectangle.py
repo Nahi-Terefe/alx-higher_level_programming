@@ -18,7 +18,7 @@ class Rectangle:
         else:
             if rect_1.area() >= rect_2.area():
                 return rect_1
-            else:
+            elif rect_2.area() > rect_1.area():
                 return rect_2
 
     def __init__(self, width=0, height=0):
