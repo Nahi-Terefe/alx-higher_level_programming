@@ -15,11 +15,10 @@ class Rectangle:
             raise TypeError("rect_1 must be an instance of Rectangel")
         elif not isinstance(rect_2, Rectangle):
             raise TypeError("rect_2 must be an instance of Rectangel")
+        elif rect_1.area() >= rect_2.area():
+            return rect_1
         else:
-            if rect_1.area() >= rect_2.area():
-                return rect_1
-            elif rect_2.area() > rect_1.area():
-                return rect_2
+            return rect_2
 
     def __init__(self, width=0, height=0):
         """ Initialize the class"""
