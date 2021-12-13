@@ -8,6 +8,17 @@ class Rectangle:
     number_of_instances = 0
     print_symbol = "#"
 
+    @staticmethod
+    def bigger_or_equal(rect_1, rect_2):
+        """ Static method compare and return biggest rectangle instance """
+        if not isinstance(rect_1, Rectangle):
+            raise TypeError("rect_1 must be an instance of Rectangel")
+        elif not isinstance(rect_2, Rectangle):
+            raise TypeError("rect_2 must be an instance of Rectangel")
+        elif rect_1.area() >= rect_2.area():
+            return rect_1
+        return rect_2
+
     def __init__(self, width=0, height=0):
         """ Initialize the class"""
         self.width = width
@@ -73,15 +84,3 @@ class Rectangle:
         """ Magic method to delete this rectangle """
         print("Bye rectangle...")
         Rectangle.number_of_instances -= 1
-
-    @staticmethod
-    def bigger_or_equal(rect_1, rect_2):
-        """ Static method compare and return biggest rectangle instance """
-        if not isinstance(rect_1, Rectangle):
-            raise TypeError("rect_1 must be an instance of Rectangel")
-        elif not isinstance(rect_2, Rectangle):
-            raise TypeError("rect_2 must be an instance of Rectangel")
-        elif rect_1.area() >= rect_2.area():
-            return rect_1
-        else:
-            rect_2
