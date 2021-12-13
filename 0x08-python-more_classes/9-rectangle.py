@@ -20,6 +20,11 @@ class Rectangle:
         else:
             return rect_2
 
+    @classmethod
+    def square(cls, size=0):
+        """ Class method returns a square rectangle """
+        return cls(size, size)
+
     def __init__(self, width=0, height=0):
         """ Initialize the class"""
         self.width = width
