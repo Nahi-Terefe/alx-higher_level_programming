@@ -1,17 +1,23 @@
 #!/usr/bin/python3
+
+"""
+Module print_square
+print_square
+
+"""
+
+
 def print_square(size):
     """
-    ''def print_square(size):'' Always is a entiger number.
-    If the number is float, this number need be close and
-    positive."""
-    if type(size) not in [int, float]:
-        raise TypeError("size must be an integer")
-    elif type(size) is float and size < 0:
-        raise TypeError("size must be an integer")
-    elif type(size) is float:
-        size = int(size)
+    Print a square
+    """
+    if type(size) != int:
+        raise TypeError('size must be an integer')
     if size < 0:
-        raise ValueError("size must be >= 0")
-    else:
-        for i in range(size):
-            print("#" * size)
+        raise ValueError('size must be >= 0')
+    if size == 0:
+        return
+    for i in range(size):
+        for j in range(size):
+            print("#", end="")
+        print()
