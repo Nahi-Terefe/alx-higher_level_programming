@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 """ Rectangel Class module """
-from _typeshed import HasFileno
-
 
 BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
