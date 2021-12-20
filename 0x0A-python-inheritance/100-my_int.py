@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-
-"""
-module for MyInt.
-"""
+""" module for MyInt """
 
 
 class MyInt(int):
