@@ -17,60 +17,60 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """Getter"""
+        """ Width Getter - Read Value """
         return self.__width
+
+    @width.setter
+    def width(self, value):
+        """ Setter width - change value """
+        if type(value) is not int:
+            raise TypeError("width must be an integer")
+        elif value <= 0:
+            raise ValueError("width must be > 0")
+        else:
+            self.__width = value
 
     @property
     def height(self):
-        """Getter"""
+        """ height Getter - Read Value """
         return self.__height
+
+    @height.setter
+    def height(self, value):
+        """ Setter height - change value """
+        if type(value) is not int:
+            raise TypeError("height must be an integer")
+        elif value <= 0:
+            raise ValueError("height must be > 0")
+        else:
+            self.__height = value
 
     @property
     def x(self):
-        """Getter"""
+        """ x Getter - Read Value """
         return self.__x
+
+    @x.setter
+    def x(self, value):
+        """ Setter x - change value """
+        if type(value) is not int:
+            raise TypeError("x must be an integer")
+        elif value < 0:
+            raise ValueError("x must be >= 0")
+        else:
+            self.__x = value
 
     @property
     def y(self):
-        """Getter"""
+        """ y Getter - Read Value """
         return self.__y
 
-    @width.setter
-    def width(self, width):
-        """ width setter """
-        if type(width) is not int:
-            raise TypeError("width must be an integer")
-        elif width <= 0:
-            raise ValueError("width must be > 0")
-        else:
-            self.__width = width
-
-    @height.setter
-    def height(self, height):
-        """ height setter """
-        if type(height) is not int:
-            raise TypeError("height must be an integer")
-        elif height <= 0:
-            raise ValueError("height must be > 0")
-        else:
-            self.__height = height
-
-    @x.setter
-    def x(self, x):
-        """ x setter """
-        if type(x) is not int:
-            raise TypeError("x must be an integer")
-        elif x < 0:
-            raise ValueError("x must be >= 0")
-        else:
-            self.__x = x
-
     @y.setter
-    def y(self, y):
-        """ y setter """
-        if type(y) is not int:
-            raise TypeError("y must be integer")
-        elif y < 0:
+    def y(self, value):
+        """ Setter y - change value """
+        if type(value) is not int:
+            raise TypeError("y must be an integer")
+        elif value < 0:
             raise ValueError("y must be >= 0")
         else:
-            self.__y = y
+            self.__y = value
