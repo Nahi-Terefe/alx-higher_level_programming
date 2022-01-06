@@ -1,13 +1,13 @@
 #!/src/bin/python3
-
-class Base:
+""" Base class module """
+class Base():
     """ Base Class """
 
     __nb_objects = 0
 
     def __init__(self, id=none):
         """ class constructor """
-        if id != None:
+        if id is not None:
             self.id = id
         else:
             Base.__nb_objects += 1
