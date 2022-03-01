@@ -1,5 +1,5 @@
 #!/usr/bin/node
-'use strict';
+// Handle arguments
 
 let argvEelement = process.argv.length;
 if (argvEelement <= 2) {
