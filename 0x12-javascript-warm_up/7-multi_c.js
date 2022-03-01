@@ -1,5 +1,6 @@
 #!/usr/bin/node
 // Basic print with Javascript
+'use strict';
 
 const fun = 'C is fun';
 
