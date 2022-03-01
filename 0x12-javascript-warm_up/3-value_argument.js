@@ -1,17 +1,8 @@
 #!/usr/bin/node
-// print the first argument passed to the this script
-
-let argv = process.argv;
-let firstArg = '';
-
-argv.forEach((value, key) => {
-    if (key === 2) {
-        firstArg = value;        
-    }
-});
-
-if (firstArg === ''){
-    console.log('No argument');
-}else {
-    console.log(firstArg);
+'use strict';
+let arg = process.argv[2];
+if (arg === undefined) {
+  console.log('No argument');
+} else {
+  console.log(arg);
 }
