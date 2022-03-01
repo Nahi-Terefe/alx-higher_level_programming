@@ -1,8 +1,10 @@
 #!/usr/bin/node
-'use strict';
-let arg = process.argv[2];
-if (arg === undefined) {
-  console.log('No argument');
-} else {
+// Handle arguments with Javascript
+
+const arg = process.argv[2];
+
+if (arg) {
   console.log(arg);
+} else {
+  console.log('No argument');
 }
