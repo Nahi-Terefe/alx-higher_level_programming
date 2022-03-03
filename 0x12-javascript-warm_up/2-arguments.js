@@ -1,5 +1,6 @@
 #!/usr/bin/node
 // Handle arguments with Javascript
+'use strict';
 
 if (process.argv.length < 3) {
   console.log('No argument');
