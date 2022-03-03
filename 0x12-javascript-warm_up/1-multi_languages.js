@@ -1,5 +1,8 @@
 #!/usr/bin/node
-// Prints C is fun, Python is cool and JavaScript is amazing
 'use strict';
-
-console.log("C is fun\nPython is cool\nJavaScript is amazing")
+let words = 'C is fun';
+console.log(words);
+words = 'Python is cool';
+console.log(words);
+words = 'JavaScript is amazing';
+console.log(words);
