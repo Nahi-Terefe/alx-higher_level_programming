@@ -1,6 +1,5 @@
 #!/usr/bin/node
 // Basic print with Javascript
-'use strict';
 
 const array = ['C is fun',
   'Python is cool',
