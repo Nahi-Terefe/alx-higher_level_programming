@@ -1,21 +1,25 @@
 #!/usr/bin/python3
-"""Conect DataBase and query"""
+""" List all state in database """
 
+
+from sys import argv
 import MySQLdb
-import sys
 
-if __name__ == "__main__":
-    db = MySQLdb.connect(host="localhost",
-                         port=3306,
-                         user=sys.argv[1],
-                         passwd=sys.argv[2],
-                         db=sys.argv[3])
-    cur = db.cursor()
+if __name__ == '__main__':
 
-    # Execute the query
-    cur.execute("SELECT * FROM states ORDER BY id ASC;")
-    for row in cur.fetchall():
+    db_user = argv[1]
+    db_passwd = argv[2]
+    db_name = argv[3]
+
+    database = MySQLdb.connect(host='localhost',
+                               port=3306,
+                               user=db_user,
+                               passwd=db_passwd,
+                               db=db_name)
+
+    cursor = database.cursor()
+
+    cursor.execute('SELECT id, name FROM states ORDER BY states.id ASC')
+
+    for row in cursor.fetchall():
         print(row)
-
-    cur.close()
-    db.close()
