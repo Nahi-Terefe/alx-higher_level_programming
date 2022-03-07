@@ -3,11 +3,10 @@
     values in the states table of hbtn_0e_0_usa where
     name matches the argument"""
 
+import MySQLdb
+import sys
 
 if __name__ == "__main__":
-
-    import MySQLdb
-    import sys
 
     db_user = sys.argv[1]
     db_pass = sys.argv[2]
@@ -23,8 +22,8 @@ if __name__ == "__main__":
     cursor = database.cursor()
 
     cursor.execute("SELECT * FROM states\
-        WHERE  states.name = %s\
-        ORDER BY states.id ASC;", (given_state,))
+        WHERE  states.name = \'{}\'\
+        ORDER BY states.id ASC;".format(given_state))
 
     fetch = cursor.fetchall()
     for row in fetch:
