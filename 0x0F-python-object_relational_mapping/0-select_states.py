@@ -13,7 +13,7 @@ if __name__ == "__main__":
     cur = db.cursor()
 
     # Execute the query
-    cur.execute("SELECT id, name FROM states ORDER BY states.id ASC;")
+    cur.execute("SELECT * FROM states ORDER BY id ASC;")
     for row in cur.fetchall():
         print(row)
 
