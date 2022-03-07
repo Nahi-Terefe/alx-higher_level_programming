@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" Select all state from database and diplay it."""
 from sqlalchemy import create_engine, Table, Integer, String, Column
 from sqlalchemy.orm import sessionmaker, declarative_base
 import sys
@@ -14,7 +15,7 @@ port = 3306
 
 
 class states(Base):
-    """states account."""
+    """states model definition or their schema"""
 
     __tablename__ = "states"
 
