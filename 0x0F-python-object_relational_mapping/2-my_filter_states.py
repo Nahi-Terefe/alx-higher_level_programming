@@ -8,25 +8,24 @@ import sys
 
 if __name__ == "__main__":
 
-    db_user = sys.argv[1]
-    db_pass = sys.argv[2]
-    db_name = sys.argv[3]
-    given_state = sys.argv[4]
+    username = sys.argv[1]
+    password = sys.argv[2]
+    DB_Name = sys.argv[3]
+    state_name = sys.argv[4]
 
-    database = MySQLdb.connect(host='localhost',
+    database = MySQLdb.connect(host="localhost",
                                port=3306,
-                               user=db_user,
-                               password=db_pass,
-                               db=db_name)
+                               user=username,
+                               passwd=password,
+                               db=DB_Name,
+                               charset="utf8")
 
     cursor = database.cursor()
-
-    cursor.execute("SELECT * FROM states\
-        WHERE  states.name = \'{}\'\
-        ORDER BY states.id ASC;".format(given_state))
-
-    fetch = cursor.fetchall()
-    for row in fetch:
+    cursor.execute("SELECT * FROM states WHERE BINARY " +
+                   "name='{}' ".format(state_name) +
+                   "ORDER BY id ASC")
+    rows = cursor.fetchall()
+    for row in rows:
         print(row)
 
     cursor.close()
