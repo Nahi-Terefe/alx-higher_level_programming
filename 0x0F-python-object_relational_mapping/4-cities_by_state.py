@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 """
-write a script that takes in arguments and displays all
-values in the states table of hbtn_0e_0_usa where name matches the argument.
-But this time, write one that is safe from MySQL injections!
+Write a script that lists all cities from the database hbtn_0e_4_usa
 """
+
 import MySQLdb
 import sys
 
@@ -12,7 +11,6 @@ if __name__ == "__main__":
     db_user = sys.argv[1]
     db_pass = sys.argv[2]
     db_name = sys.argv[3]
-    given_state = sys.argv[4]
 
     database = MySQLdb.connect(host='localhost',
                                port=3306,
@@ -22,9 +20,10 @@ if __name__ == "__main__":
 
     cursor = database.cursor()
 
-    cursor.execute("SELECT * FROM states\
-        WHERE  states.name = %s\
-        ORDER BY states.id ASC;", (given_state,))
+    cursor.execute("""SELECT cities.id, cities.name, states.name
+                   FROM cities JOIN states
+                   ON cities.state_id = states.id
+                   ORDER BY id ASC;""")
 
     fetch = cursor.fetchall()
     for row in fetch:
