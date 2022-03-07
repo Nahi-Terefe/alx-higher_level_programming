@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Select all state from database and diplay it."""
-from sqlalchemy import create_engine, Table, Integer, String, Column
+from sqlalchemy import create_engine, Table, Integer, String, Column, select
 from sqlalchemy.orm import sessionmaker, declarative_base
 import sys
 import pymysql
@@ -26,34 +26,20 @@ class states(Base):
         return "<states %r>" % self.username
 
 
-db_url = "mysql+pymysql://{0}:{1}@{2}:{3}/{4}".format(
-         username, password, host, port, dbName)
-# create database engine / connect to the database
-db_engine = create_engine(db_url)
+if __name__ == "__main__":
 
+    db_url = "mysql+pymysql://{0}:{1}@{2}:{3}/{4}".format(
+             username, password, host, port, dbName)
+    # create database engine / connect to the database
+    db_engine = create_engine(db_url)
 
-# let's create a session
-# Session = sessionmaker(bind=db_engine)
-# session = Session()
+    connection = db_engine.connect()
+    connection = connection.execution_options(
+        isolation_level="READ COMMITTED"
+    )
 
-# for state in session.query(states):
-#     print(state.name)
+    s = select([states])
+    result = connection.execute(s)
 
-
-# # query for existing database
-# existing_db = db_engine.execute("SHOW DATABASES;")
-# existing_db = [d[0] for d in existing_db]
-
-connection = db_engine.connect()
-connection = connection.execution_options(
-    isolation_level="READ COMMITTED"
-)
-
-s = select([states])
-result = connection.execute(s)
-
-for row in result:
-    print(row)
-
-# print("existing databases are: ")
-# print(existing_db)
+    for row in result:
+        print(row)
