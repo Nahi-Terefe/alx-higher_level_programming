@@ -21,7 +21,8 @@ if __name__ == "__main__":
     cursor = database.cursor()
 
     cursor.execute("""SELECT cities.id, cities.name, states.name
-                   FROM cities JOIN states
+                   FROM cities
+                   JOIN states
                    ON cities.state_id = states.id
                    ORDER BY id ASC;""")
 
