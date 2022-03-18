@@ -1,12 +1,15 @@
 #!/usr/bin/python3
 """my body header"""
 
-if __name__ == "__main__":
-    import urllib.request
+import urllib.request
 
-    with urllib.request.urlopen('https://alx-intranet.hbtn.io/status') as rep:
-        print("Body response:")
+if __name__ == "__main__":
+
+    url = "https://alx-intranet.hbtn.io/status"
+
+    with urllib.request.urlopen() as rep:
         bodyType = rep.read()
-        print("\t- type: {}".format(type(rep.read())))
+        print("Body response:")
+        print("\t- type: {}".format(type(bodyType)))
         print("\t- content: {}".format(bodyType))
         print("\t- utf8 content: {}".format(bodyType.decode('utf-8')))
