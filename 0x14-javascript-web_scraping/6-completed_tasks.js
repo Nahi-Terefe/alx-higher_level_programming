@@ -1,15 +1,20 @@
 #!/usr/bin/node
-'use strict';
-const fs = require('fs');
 const request = require('request');
+const url = process.argv[2];
 
-request(process.argv[2], { json: true }, function (e, r, b) {
-  if (e) console.log(e); else if (r.statusCode === 200) {
-    const count = {};
-    b.forEach(t => {
-      if (count[t.userId] === undefined) count[t.userId] = 0;
-      if (t.completed === true) count[t.userId]++;
-    });
-    console.log(count);
+request(url, (err, resp, body) => {
+  if (err) { console.log(err); }
+
+  const completed = {};
+  const jsonBody = JSON.parse(body);
+  for (const task of jsonBody) {
+    if (task.completed) {
+      if (completed[task.userId]) {
+        completed[task.userId]++;
+      } else {
+        completed[task.userId] = 1;
+      }
+    }
   }
+  console.log(completed);
 });
